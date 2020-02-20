@@ -7,17 +7,22 @@ def find_max_profit(prices):
   greatest_diff = 0
   for i in range(len(prices)):
     for j in range(len(prices[i:])):
-      # print(i,j)
+
       if greatest_diff <= 0 and prices[i] != prices[-1]:
-        # if prices[j + i] - prices[i] > greatest_diff:
-        greatest_diff = prices[j + i] - prices[i]
-        # print(prices, 'from ne')
+        if greatest_diff == 0:
+          greatest_diff = prices[j + i] - prices[i]
+
+        elif greatest_diff < 0:
+          if prices[j + i] - prices[i] > greatest_diff:
+            greatest_diff = prices[j + i] - prices[i]
         
       elif prices[j + i] >= prices[i] and prices[i] != prices[-1]:
         if prices[j + i] - prices [i] > greatest_diff:
           greatest_diff = prices[j + i] - prices[i]
     
   return greatest_diff
+
+  # more efficient attempt below
 
   # low = 0
   # high = 0
