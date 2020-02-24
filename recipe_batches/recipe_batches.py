@@ -3,8 +3,18 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+  batch_num = float('inf')
 
+  for key in recipe:
+    if key not in ingredients or ingredients[key] < recipe[key]:
+      return 0
+    if ingredients[key] // recipe[key] < batch_num:
+      batch_num = ingredients[key] // recipe[key]
+    
+    
+  return batch_num
+
+print(recipe_batches({ 'milk': 100, 'flour': 4, 'sugar': 10, 'butter': 5 }, { 'milk': 1288, 'flour': 9, 'sugar': 95, 'butter': 15}))
 
 if __name__ == '__main__':
   # Change the entries of these dictionaries to test 
